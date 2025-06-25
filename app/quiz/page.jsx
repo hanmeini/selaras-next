@@ -5,7 +5,7 @@ import Link from "next/link";
 import bgHome from "../../public/images/bg-grid.png";
 import AuthGuard from '../components/AuthGuard';
 
-export const quizQuestions = [
+const quizQuestions = [
   // --- BAGIAN 1: Menentukan KATEGORI UTAMA (3 Pertanyaan) ---
   {
     question: "Jenis tempat wisata seperti apa yang paling menarik bagi Anda?",
