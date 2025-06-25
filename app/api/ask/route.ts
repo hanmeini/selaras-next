@@ -8,11 +8,13 @@ import axios from 'axios';
 export async function POST(req) {
   // --- KONFIGURASI KEAMANAN (CORS) ---
   // Daftar domain yang diizinkan untuk "berbicara" dengan API ini.
-  const allowedOrigins = [
-    'https://selaras-ai.vercel.app', // Domain Vercel frontend lama Anda
-    'http://localhost:5173',          // Untuk testing di komputer lokal (Vite)
-    'http://localhost:3000'           // Untuk testing di komputer lokal (Next.js)
-  ];
+const allowedOrigins = [
+  'https://selaras-ai.vercel.app',
+  'https://selaras-next.vercel.app', // TAMBAHKAN INI
+  'http://localhost:5173',
+  'http://localhost:3000'
+];
+
   const origin = req.headers.get('origin');
 
   // Membuat header respons standar
@@ -84,3 +86,28 @@ export async function POST(req) {
     );
   }
 }
+export async function OPTIONS(req: Request) {
+const allowedOrigins = [
+  'https://selaras-ai.vercel.app',
+  'https://selaras-next.vercel.app', // TAMBAHKAN INI
+  'http://localhost:5173',
+  'http://localhost:3000'
+];
+
+  const origin = req.headers.get('origin');
+
+  const headers: HeadersInit = {
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  };
+
+  if (allowedOrigins.includes(origin ?? '')) {
+    headers['Access-Control-Allow-Origin'] = origin!;
+  }
+
+  return new NextResponse(null, {
+    status: 204,
+    headers,
+  });
+}
+
