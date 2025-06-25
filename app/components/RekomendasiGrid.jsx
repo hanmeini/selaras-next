@@ -1,41 +1,42 @@
+"use client"
 import React, { useState, useEffect } from 'react';
-import { db } from '../../firebase-config';
+import { db } from '../../lib/firebase-config'; // Sesuaikan path
 import { collection, query, where, getDocs, limit } from 'firebase/firestore'; 
 import WisataCard from './WisataCard';
-import { useLocation } from 'react-router-dom'; 
+import { useSearchParams } from 'next/navigation'; 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
-const RekomendasiGrid = ({ kategori, searchTerm }) => { 
+const RekomendasiGrid = ({ kategori, pilihanMood, butuhAksesDifabel, searchTerm }) => { 
   const [masterData, setMasterData] = useState(null);
   const [displayedData, setDisplayedData] = useState(null);
-
   const [loading, setLoading] = useState(true);
-  
-  const location = useLocation(); 
-  const searchParams = new URLSearchParams(location.search); 
-  const pilihanMood = searchParams.get('mood') || 'semua';
-  const butuhAksesDifabel = searchParams.get('aksesDifabel') === 'true';
 
-  //  MENGAMBIL DATA AWAL DARI FIRESTORE ---
+
+  // useEffect untuk mengambil data dari Firestore
   useEffect(() => {
     const fetchDestinasi = async () => {
       setLoading(true);
-      setMasterData(null); 
+      setMasterData(null);
+      console.log("--- LOG 1: PROPS DITERIMA ---");
+      console.log("Kategori:", kategori);
+      console.log("Mood:", pilihanMood);
+      console.log("Difabel:", butuhAksesDifabel);
       try {
+        let q;
         if (kategori) {
           let conditions = [where('category', '==', kategori)];
           if (pilihanMood && pilihanMood !== 'semua') conditions.push(where('mood', 'array-contains', pilihanMood));
           if (butuhAksesDifabel) conditions.push(where('aksesDifabel', '==', true));
+          q = query(collection(db, 'places'), ...conditions);
           
-          const q = query(collection(db, 'places'), ...conditions);
           const querySnapshot = await getDocs(q);
           const listDestinasi = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
           setMasterData(listDestinasi);
+
         } else {
           const categoriesToShow = ['pantai', 'alam', 'sejarah', 'hiburan'];
           const promises = categoriesToShow.map(cat => getDocs(query(collection(db, 'places'), where('category', '==', cat), limit(10))));
-          
           const results = await Promise.all(promises);
           
           const newCategorizedData = {};
@@ -55,9 +56,12 @@ const RekomendasiGrid = ({ kategori, searchTerm }) => {
     fetchDestinasi();
   }, [kategori, pilihanMood, butuhAksesDifabel]);
 
-  //  MEMFILTER DATA BERDASARKAN PENCARIAN ---
+  // useEffect untuk memfilter data berdasarkan pencarian
   useEffect(() => {
-    if (!masterData) return; 
+    if (!masterData) {
+      setDisplayedData(null);
+      return;
+    }
 
     const lowercasedTerm = (searchTerm || '').toLowerCase();
 
@@ -65,6 +69,7 @@ const RekomendasiGrid = ({ kategori, searchTerm }) => {
       setDisplayedData(masterData);
       return;
     }
+
     if (Array.isArray(masterData)) {
       const results = masterData.filter(place => place.name.toLowerCase().includes(lowercasedTerm));
       setDisplayedData(results);
@@ -78,8 +83,7 @@ const RekomendasiGrid = ({ kategori, searchTerm }) => {
       });
       setDisplayedData(filteredCategorizedData);
     }
-  }, [searchTerm, masterData]);
-
+  }, [searchTerm, masterData]); // PERBAIKAN UTAMA: Gunakan 'masterData'
 
   if (loading) return <div className="text-center p-10">Memuat rekomendasi...</div>;
   
@@ -88,7 +92,6 @@ const RekomendasiGrid = ({ kategori, searchTerm }) => {
   return (
     <section className="py-12 space-y-12">
       {kategori ? (
-        // --- Tampilan jika ada filter kategori (Hasil Kuis) ---
         hasResults ? (
           <div className="px-4">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10">Rekomendasi Untukmu</h2>
@@ -102,7 +105,6 @@ const RekomendasiGrid = ({ kategori, searchTerm }) => {
           </div>
         )
       ) : (
-        // --- Tampilan jika TIDAK ada filter kategori (Halaman Jelajah) ---
         hasResults ? (
           Object.entries(displayedData).map(([categoryName, places]) => (
             <div key={categoryName} className="space-y-4">

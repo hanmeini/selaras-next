@@ -1,11 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-// PERBAIKAN: Menggabungkan impor dan menambahkan 'useLocation'
-import Link from 'next/link';     // Gunakan Link dari Next.js
-import { useRouter } from 'next/navigation'; // Gunakan useRouter dari Next.js
-import login from "../../public/images/login.png";
-import unlock from '../../public/images/Unlock.png';
-// PERBAIKAN: Mengimpor 'provider' untuk Google Login
+import Link from 'next/link'; 
+import { useRouter } from 'next/navigation';
 import { auth, provider } from "../../lib/firebase-config";
 import {
   signInWithEmailAndPassword,
@@ -78,7 +74,7 @@ const Login = () => {
             {/* Kolom Kiri: GAMBAR (Hanya Desktop) */}
             <div className="hidden lg:block relative h-screen">
                 <img
-                    src={login}
+                    src='/images/login.png'
                     alt="background"
                     className="h-full w-full object-cover"
                 />
@@ -96,18 +92,19 @@ const Login = () => {
 
             {/* Kolom Kanan: FORM (Layout Responsif) */}
             <div 
-                style={{ '--bg-image-url': `url(${login})` }}
-                className="relative h-screen flex flex-col justify-center items-center p-4 bg-cover bg-center bg-[image:var(--bg-image-url)] lg:bg-white"
-            >
+                className="
+                    relative h-screen flex flex-col justify-center items-center p-4 
+                    bg-cover bg-center bg-[url('/images/login.png')] lg:bg-none lg:bg-white"
+                >
                 <div className="absolute inset-0 bg-[#003366]/55 lg:hidden"></div>
-                <button onClick={() => router.push('/')} className="lg:hidden z-10 absolute top-5 left-5 w-10 h-10 flex items-center justify-center text-white bg-black/20 rounded-full">
+                <button onClick={() => router.push('/')} className="lg:hidden z-10 absolute top-5 left-5 w-10 h-10 flex items-center justify-center text-white text-2xl border border-white rounded-full hover:bg-white hover:text-[#003366] transition">
                     ←
                 </button>
 
                 <div className="relative z-10 w-full max-w-sm bg-white p-8 rounded-2xl shadow-xl lg:shadow-none lg:rounded-none lg:flex lg:flex-col lg:justify-center">
                     <div className="w-full">
                         <div className="flex justify-center mb-6">
-                            <img src={unlock} alt="Unlock Icon" />
+                            <img src='/images/Unlock.png' alt="Unlock Icon" />
                         </div>
                         <h2 className="text-3xl font-semibold text-gray-800 text-center">Masuk ke Selaras</h2>
                         <p className="text-gray-500 mt-1 mb-6 text-center">Akses rekomendasi personal hanya untukmu.</p>

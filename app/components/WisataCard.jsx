@@ -1,6 +1,6 @@
+"use client"
 import React from 'react';
-import { FiStar } from 'react-icons/fi'
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const WisataCard = ({ item }) => {
   const { id, galleryImages, name, location, description } = item;
@@ -14,7 +14,7 @@ const WisataCard = ({ item }) => {
 
   return (
       <Link 
-      to={`/wisata/${id}`}
+      href={`/wisata/${id}`}
       className="block relative rounded-2xl overflow-hidden shadow-lg group transform hover:-translate-y-2 transition-transform duration-300 ease-in-out h-96"
     >
     <div className="relative rounded-2xl overflow-hidden shadow-lg group transform hover:-translate-y-2 transition-transform duration-300 ease-in-out">

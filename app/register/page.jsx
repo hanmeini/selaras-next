@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import Link from 'next/link'
-import login from "../../public/images/login.png";
-import unlock from '../../public/images/Unlock.png';
 import { auth, db } from "../../lib/firebase-config";
 import {
   createUserWithEmailAndPassword,
@@ -66,7 +64,7 @@ const Register = () => {
             
             {/* Kolom Kiri: GAMBAR (Hanya Desktop) */}
             <div className="hidden lg:block relative h-screen">
-                <img src={login} alt="background" className="h-full w-full object-cover" />
+                <img src='/images/login.png' alt="background" className="h-full w-full object-cover" />
                 <button onClick={() => router.back(-1)} className="z-10 absolute top-5 left-5 w-12 h-12 flex items-center justify-center text-white text-2xl border border-white rounded-full hover:bg-white hover:text-[#003366] transition">
                     ←
                 </button>
@@ -80,7 +78,7 @@ const Register = () => {
 
             {/* Kolom Kanan: FORM (Responsif) */}
             <div 
-                style={{ '--bg-image-url': `url(${login})` }}
+                style={{ '--bg-image-url': `url(/images/login.png)` }}
                 className="
                     relative h-screen flex flex-col justify-center items-center p-4
                     bg-cover bg-center bg-[image:var(--bg-image-url)]  /* Background mobile */
@@ -97,7 +95,7 @@ const Register = () => {
                 <div className="w-full max-w-sm z-10 bg-white p-8 rounded-2xl shadow-xl lg:shadow-none lg:rounded-none lg:h-screen lg:flex lg:flex-col lg:justify-center">
                     <div className="w-full">
                         <div className="flex justify-center mb-6">
-                            <img src={unlock} alt="Unlock Icon" />
+                            <img src='/images/Unlock.png' alt="Unlock Icon" />
                         </div>
                         <h2 className="text-3xl font-semibold text-gray-800 text-center">Gabung Bersama Kami</h2>
                         <p className="text-gray-500 mt-1 mb-6 text-center">Mulai petualanganmu bersama Selaras</p>

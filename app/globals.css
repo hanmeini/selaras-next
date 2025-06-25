@@ -12,4 +12,6 @@ body {
   padding: 0;
   background-color: #ffffff;
   font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }

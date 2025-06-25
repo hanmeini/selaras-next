@@ -1,19 +1,22 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { useAuth } from '../context/Authcontext'; // Sesuaikan path
-
+import { useAuth } from '../../context/Authcontext'; // Sesuaikan path
+import Image from 'next/image';
 // Impor aset-aset yang dibutuhkan
-import SelarasAI from '../public/images/selarasAi.png'; // Ganti dengan path ikon AI Anda
-import person from '../public/images/person-icon.png'; // Ganti dengan path ikon person default Anda
+import SelarasAI from '../../public/images/selarasAi.png'; // Ganti dengan path ikon AI Anda
+// import person from '../public/images/person-icon.png'; // Ganti dengan path ikon person default Anda
 
 // Komponen Ikon AI, bisa Anda sesuaikan
 const AiIcon = () => ( 
-  <img 
-    src={SelarasAI} 
+  <Image 
+    src="/images/selarasAi.png" // Path dimulai dengan '/', menunjuk ke folder 'public'
     alt="Ikon Selaras AI" 
-    className="w-8 h-8 rounded-full object-cover"
+    width={32} 
+    height={32} 
+    className="rounded-full object-cover"
   /> 
 );
+
 
 // Terima 'message' dan 'userProfile' sebagai props
 const ChatMessage = ({ message }) => {
@@ -33,7 +36,7 @@ const ChatMessage = ({ message }) => {
     }
     return (
       <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center">
-        <img src={person} alt="Ikon Pengguna" className="w-5 h-5" />
+        <img src='/images/person-icon.png' alt="Ikon Pengguna" className="w-5 h-5" />
       </div>
     );
   };
