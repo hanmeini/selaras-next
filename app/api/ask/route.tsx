@@ -58,13 +58,17 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ reply }, { headers });
 
-  } catch (error: any) {
-    console.error("Kesalahan saat memanggil Gemini:", error.response?.data || error.message);
-    return NextResponse.json(
-      { error: 'Gagal meminta jawaban dari Gemini API.' },
-      { status: 500, headers }
-    );
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Kesalahan saat memanggil Gemini:", error.message);
+    } else {
+      console.error("Kesalahan saat memanggil Gemini:", error);
+    }
   }
+  return NextResponse.json(
+    { error: 'Gagal meminta jawaban dari Gemini API.' },
+    { status: 500, headers }
+  );
 }
 
 // Handle request OPTIONS (CORS preflight)
