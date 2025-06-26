@@ -51,7 +51,7 @@ const LandingPage = () => {
         {/* home */}
         <section id='home' style={{ backgroundImage: `url('/images/bg-grid.png')` }} className="flex flex-col pt-20 bg-cover bg-center bg-no-repeat h-full min-w-screen">
           <div className='flex flex-col p-20 justify-center items-center relative'>
-            <div className="absolute top-1/10 left-3 md:left-auto md:right-8 lg:right-72">
+            <div className="absolute top-1/4 md:top-1/10 left-3 md:left-auto md:right-8 lg:right-72">
                 <img src='/images/Smiley Fun.png' alt="smile" />
             </div>
             <div className='flex flex-col gap-10 items-center '>
@@ -88,8 +88,8 @@ const LandingPage = () => {
                 <p className='md:text-4xl px-5 text-3xl mt-4 text-transparent bg-clip-text bg-gradient-to-r from-[#1E1E1E] to-[#D3CFCF] font-semibold font-manrope'>Selaras adalah platform rekomendasi perjalanan berbasis AI yang membantu kamu menemukan destinasi liburan sesuai mood dan preferensimu.</p>
             </div>  
             <img src='/images/emoji-senyum.png' className='absolute lg:top-[505px] lg:left-64 md:top-[480px] md:left-24 sm:top-[380px] sm:left-24 left-5 top-[450px] lg:w-20 lg:h-20 w-14 h-14'/>
-            <img src='/images/prambanan.png' className='absolute lg:bottom-[40px] lg:left-[610px] md:left-[300px] md:-bottom-3 sm:-bottom-16 bottom-28 w-64 h-48 md:w-36 md:h-26'/>
-            <img src='/images/sparkle.png' className='lg:bottom-4 lg:right-64 md:-bottom-[30px] md:right-[70px] sm:bottom-24 absolute lg:w-36 right-7 bottom-[400px] lg:h-26 w-24 h-24'/>
+            <img src='/images/prambanan.png' className='absolute md:bottom-[400px] lg:bottom-0 lg:left-[610px] md:left-[300px] sm:-bottom-16 bottom-28 w-64 h-48 md:w-36 md:h-26'/>
+            <img src='/images/sparkle.png' className='lg:bottom-[400px] md:bottom-[500px] lg:right-64 md:right-[70px] absolute lg:w-36 right-7 bottom-[400px] lg:h-26 w-24 h-24'/>
         </section>
 
         {/* overview */}
@@ -130,7 +130,7 @@ const LandingPage = () => {
         <img src='/images/arrow-right.png' alt="arrowRight" className="hidden md:block left-0 absolute md:w-36 md:h-32 rotate-2" />
         <img src='/images/arrow-left.png' alt="arrowLeft" className="hidden md:block right-0 absolute md:w-36 md:h-32" />
         <img src='/images/hand.png' alt="hand" className="w-15 h-15" />
-        <h1 className="text-5xl font-semibold font-manrope text-[#2E2E2E] mt-3">Cerita Seru Mereka</h1>
+        <h1 className="text-2xl md:text-5xl font-semibold font-manrope text-[#2E2E2E] mt-3">Cerita Seru Mereka</h1>
         <p className="text-[#8A9497] mt-3">Langsung dari pengalaman mereka.</p>
 
         {/* Desktop layout */}
@@ -236,7 +236,13 @@ const LandingPage = () => {
                   <img src='/images/petik.png' alt="petik" className="w-8 h-8 mb-2" />
                   <p className="font-manrope text-lg text-left text-[#939393]">{card.text}</p>
                   <div className="flex items-center mt-4">
-                    <img src={card.image} alt={`pp-${card.name}`} className="w-14 h-14 rounded-full mr-3" />
+                    <Image
+                      src={card.image}
+                      alt={`pp-${card.name}`}
+                      width={56}
+                      height={56}
+                      className="w-14 h-14 rounded-full mr-3"
+                    />
                     <div className="flex flex-col">
                       <h1 className="font-semibold font-manrope text-[#2E2E2E] text-lg">{card.name}</h1>
                       <p className="font-semibold font-manrope text-[#939393] text-md">{card.role}</p>

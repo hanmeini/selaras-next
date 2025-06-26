@@ -18,6 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/images/logo-pp.png" />
+      </head>
       <body>
         <Providers>
           <LayoutManager>{children}</LayoutManager>
