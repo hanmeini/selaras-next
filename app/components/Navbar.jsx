@@ -18,7 +18,7 @@ const CloseIcon = () => ( <svg className="w-6 h-6" fill="none" stroke="currentCo
 
 
 export default function Navbar() {
-  const { userProfile, logout } = useAuth();
+  const { userProfile, logout, loading  } = useAuth();
   const router = useRouter();
 
   // State untuk dropdown di desktop
@@ -55,6 +55,13 @@ export default function Navbar() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  if (loading) {
+  console.log("⏳ Auth masih loading, Navbar belum ditampilkan.");
+  console.log("📦 Navbar: userProfile =", userProfile);
+  return null; // atau skeleton UI
+  
+}
 
   return (
     <>

@@ -51,14 +51,14 @@ const LandingPage = () => {
         {/* home */}
         <section id='home' style={{ backgroundImage: `url('/images/bg-grid.png')` }} className="flex flex-col pt-20 bg-cover bg-center bg-no-repeat h-full min-w-screen">
           <div className='flex flex-col p-20 justify-center items-center relative'>
-            <div className="absolute top-1/4 left-3 md:left-auto md:right-8 lg:right-72">
+            <div className="absolute top-1/10 left-3 md:left-auto md:right-8 lg:right-72">
                 <img src='/images/Smiley Fun.png' alt="smile" />
             </div>
             <div className='flex flex-col gap-10 items-center '>
               <h1 className='font-bold text-[2rem] md:text-5xl text-center'>Jelajahi  sesuai <span className='font-light text-[2rem] md:text-5xl'>MOOD</span>-mu</h1>
-              <p className='text-[#8A9497] max-w-[80%]'>Selaras bantu kamu temukan liburan terbaik sesuai mood, dengan rekomendasi dari <span className='font-bold text-black'>AI</span> ✨</p>
+              <p className='text-[#8A9497] max-w-[80%] text-center'>Selaras bantu kamu temukan liburan terbaik sesuai mood, dengan rekomendasi dari <span className='font-bold text-black'>AI</span> ✨</p>
             </div>
-            <button onClick={()=> (router.push('/SelarasAI'))} className='bg-[#003366] text-white px-5 py-3 rounded-full font-semibold mt-10 hover:scale-90 duration-300 cursor-pointer'>Mulai Sekarang</button>
+            <button onClick={()=> (router.push('/quiz'))} className='bg-[#003366] text-white px-5 py-3 rounded-full font-semibold mt-10 hover:scale-90 duration-300 cursor-pointer'>Mulai Sekarang</button>
           </div>
           <div className='flex flex-col justify-center relative'>
             <div className='flex flex-row gap-5 justify-center items-center'>
@@ -87,8 +87,8 @@ const LandingPage = () => {
                 <h1 className='text-[#AAB5B5] font-manrope text-md'>Mood kamu, Destinasi kami.</h1>
                 <p className='md:text-4xl px-5 text-3xl mt-4 text-transparent bg-clip-text bg-gradient-to-r from-[#1E1E1E] to-[#D3CFCF] font-semibold font-manrope'>Selaras adalah platform rekomendasi perjalanan berbasis AI yang membantu kamu menemukan destinasi liburan sesuai mood dan preferensimu.</p>
             </div>  
-            <img src='/images/emoji-senyum.png' className='absolute lg:top-[525px] lg:left-64 md:top-[480px] md:left-24 sm:top-[380px] sm:left-24 left-5 top-[450px] lg:w-20 lg:h-20 w-14 h-14'/>
-            <img src='/images/prambanan.png' className='absolute lg:bottom-[40px] lg:left-[550px] md:left-[300px] md:-bottom-3 sm:-bottom-16 bottom-28 w-64 h-48 md:w-36 md:h-26'/>
+            <img src='/images/emoji-senyum.png' className='absolute lg:top-[505px] lg:left-64 md:top-[480px] md:left-24 sm:top-[380px] sm:left-24 left-5 top-[450px] lg:w-20 lg:h-20 w-14 h-14'/>
+            <img src='/images/prambanan.png' className='absolute lg:bottom-[40px] lg:left-[610px] md:left-[300px] md:-bottom-3 sm:-bottom-16 bottom-28 w-64 h-48 md:w-36 md:h-26'/>
             <img src='/images/sparkle.png' className='lg:bottom-4 lg:right-64 md:-bottom-[30px] md:right-[70px] sm:bottom-24 absolute lg:w-36 right-7 bottom-[400px] lg:h-26 w-24 h-24'/>
         </section>
 
@@ -106,17 +106,17 @@ const LandingPage = () => {
             
                 {/* map */}
                 <div className=" flex mt-10 bottom-2 relative">
-                  <img src='/images/map.png' alt="map" className="lg:w-[800px] lg:h-[300px] md:w-[460px] md:h-[200px] lg:mt-5 md:flex hidden"/>
-                  <img src='/images/sawah.png' alt="sawah" className="lg:w-[325px] lg:h-[471px] md:w-[240px] md:h-[320px] md:-mt-[118px] sm:mx-auto lg:-mt-[150px] md:ml-1 lg:ml-3 relative z-10 items-center justify-center"/>
-                  <div className='absolute lg:bottom-[450px] lg:right-[350px] lg:-top-24 top-14 right-72 md:-top-16 md:right-52 sm:top-36 sm:right-[460px] bg-[#FAFAFA] p-4 h-24 w-24  rounded-2xl shadow-md shadow-slate-900 rotate-[25deg] flex items-start z-20'>
+                  <img src='/images/map.png' alt="map" className="lg:w-[800px] lg:h-[320px] md:w-[560px] md:h-[200px] lg:mt-5 md:flex hidden"/>
+                  <img src='/images/sawah.png' alt="sawah" className="lg:w-[325px] lg:h-[471px] md:w-[240px] md:h-[320px] md:-mt-[118px] sm:mx-auto lg:-mt-[125px] md:ml-1 lg:ml-3 lg:-right-32 relative z-10 items-center justify-center"/>
+                  <div className='absolute lg:bottom-[400px] bottom-0 lg:right-[400px] lg:-top-24 top-14 right-72 md:-top-16 md:right-52 sm:top-36 sm:right-[460px] bg-[#FAFAFA] p-4 h-24 w-24  rounded-2xl shadow-md shadow-slate-900 rotate-[25deg] flex items-start z-20'>
                    <img src='/images//emoji-bertanya.png' alt="emottanya" className='w-8 h-8 absolute top-0 left-0'/>
                    <p className='absolute max-w-1/3 bottom-2 left-2 font-manrope text-md font-semibold'>Sesuai Moodmu</p>
                   </div>
-                  <div className='absolute lg:bottom-10 lg:left-[945px] md:bottom-6 md:left-[520px] sm:bottom-20 sm:left-60 bottom-28 right-36 bg-[#FAFAFA] p-4 h-24 w-24 rounded-2xl shadow-md shadow-slate-900 rotate-6 flex items-start z-20'>
+                  <div className='absolute lg:bottom-20 lg:left-[1075px] md:bottom-6 md:left-[520px] sm:bottom-20 sm:left-60 bottom-28 right-36 bg-[#FAFAFA] p-4 h-24 w-24 rounded-2xl shadow-md shadow-slate-900 rotate-6 flex items-start z-20'>
                    <img src='/images/jam-mountain.png' alt="jamMountain" className='w-8 h-8 absolute top-0 left-0 -rotate-6'/>
                    <p className='absolute max-w-1/3 bottom-2 left-2 font-manrope text-md font-semibold'>Jelajah Tempat</p>
                   </div>
-                  <div className='absolute lg:-top-48 lg:right-8 -top-8 -right-6 md:-right-6 md:-top-36 sm:-top-4 sm:right-6 bg-[#FAFAFA] p-4 h-24 w-24 rounded-2xl shadow-md shadow-slate-900 -rotate-8 flex items-start z-20'>
+                  <div className='absolute lg:-top-44 lg:right-20 -top-8 -right-6 md:-right-6 md:-top-36 sm:-top-4 sm:right-6 bg-[#FAFAFA] p-4 h-24 w-24 rounded-2xl shadow-md shadow-slate-900 -rotate-8 flex items-start z-20'>
                    <img src='/images/emot-coba.png' alt="emotCoba" className='lg:w-6 lg:h-6 absolute top-0 left-0 -rotate-6'/>
                    <p className='absolute max-w-1/3 bottom-2 left-2 font-manrope text-md font-semibold'>Artificial Intelligence</p>
                   </div>
@@ -126,10 +126,10 @@ const LandingPage = () => {
 
         {/* testimony */}
         <section id='testimony'>
-            <div className="mt-20 mb-48 min-w-screen h-max flex flex-col items-center relative">
+        <div className="mt-20 mb-48 min-w-screen h-max flex flex-col items-center relative">
         <img src='/images/arrow-right.png' alt="arrowRight" className="hidden md:block left-0 absolute md:w-36 md:h-32 rotate-2" />
         <img src='/images/arrow-left.png' alt="arrowLeft" className="hidden md:block right-0 absolute md:w-36 md:h-32" />
-        <img src='/image/hand.png' alt="hand" className="w-15 h-15" />
+        <img src='/images/hand.png' alt="hand" className="w-15 h-15" />
         <h1 className="text-5xl font-semibold font-manrope text-[#2E2E2E] mt-3">Cerita Seru Mereka</h1>
         <p className="text-[#8A9497] mt-3">Langsung dari pengalaman mereka.</p>
 
@@ -197,7 +197,7 @@ const LandingPage = () => {
                     <div className='lg:w-[320px] lg:h-[412px] rounded-2xl bg-[#FAFAFA] border-[#D6D6D6] border-2 flex flex-col'>
                       <div className='flex items-start justify-start'>
                         <div className='flex flex-col items-start justtify-start'>
-                          <img src='/images/pp-ahmad.pnd' alt="pp-byan" className='p-2 w-16 h-16' />
+                          <img src='/images/pp-ahmad.png' alt="pp-byan" className='p-2 w-16 h-16' />
                           <img src='/images/petik.png' alt="petik" className='w-8 h-8 ml-3 mt-2' />
                         </div>
                         <div className='flex flex-col items-start justify-start'>
