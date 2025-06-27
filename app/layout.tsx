@@ -5,21 +5,21 @@ import { LayoutManager } from "./LayoutManager";
 
 export const metadata: Metadata = {
   title: "Selaras",
+  description: "Jelajahi wisata sesuai mood",
   icons: {
-    icon: "/images/logo-pp.png",
+    icon: "/favicon.ico",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-  
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html lang="id">
       <head>
-        <link rel="icon" href="/images/logo-pp.png" />
+        <link rel="icon" type="image/png" href="/images/logo-pp.png?v=2" />
       </head>
       <body>
         <Providers>
@@ -29,3 +29,4 @@ export default function RootLayout({
     </html>
   );
 }
+
