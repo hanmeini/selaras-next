@@ -9,6 +9,7 @@ import {
   signInWithRedirect
 } from "firebase/auth";
 import { useAuth } from "../../context/Authcontext"; 
+import { getRedirectResult } from "firebase/auth";
 
 const Login = () => {
     const router = useRouter();
@@ -19,13 +20,9 @@ const Login = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false); 
 
-    // Arahkan ke halaman rekomendasi umum jika tidak ada tujuan spesifik
-
-    // useEffect untuk navigasi otomatis sudah benar
     useEffect(() => {
         if (userProfile) {
             console.log("Login dan profil siap, mengarahkan ke /rekomendasi");
-            // Menggunakan router.replace untuk mencegah pengguna kembali ke halaman login dengan tombol back
             router.replace("/rekomendasi"); 
         }
     }, [userProfile, router]);
@@ -47,26 +44,39 @@ const Login = () => {
         }
     };
 
+    useEffect(() => {
+        const fetchRedirectResult = async () => {
+            try {
+            const result = await getRedirectResult(auth);
+            if (result?.user) {
+                console.log("Login berhasil lewat redirect:", result.user);
+                router.push("/rekomendasi");
+            }
+            } catch (err) {
+            console.error("❌ Error dari redirect login:", err.code, err.message);
+            }
+        };
+
+        fetchRedirectResult();
+        }, []);
+
     const handleGoogleLogin = async () => {
         setError('');
         setLoading(true);
         try {
-            // Logika untuk redirect di mobile sudah bagus
-            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-                await signInWithRedirect(auth, provider);
-            } else {
-                await signInWithPopup(auth, provider);
-            }
+            // Gunakan popup di semua device
+            await signInWithPopup(auth, provider);
         } catch (err) {
             console.error("Google login error:", err.code, err.message);
             if (err.code === 'auth/popup-closed-by-user') {
-                setError("Proses login dengan Google dibatalkan.");
+            setError("Proses login dengan Google dibatalkan.");
             } else {
-                setError("Gagal masuk dengan Google. Silakan coba lagi.");
+            setError("Gagal masuk dengan Google. Silakan coba lagi.");
             }
             setLoading(false);
         }
     };
+
 
     return (
         <div className="w-full h-screen grid grid-cols-1 lg:grid-cols-2">
