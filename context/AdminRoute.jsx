@@ -1,18 +1,27 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useAuth } from './Authcontext'; // Sesuaikan path
+"use client";
+import { useAuth } from './Authcontext'; // sesuaikan path
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
-const AdminRoute = ({ children }) => {
+const AdminOnly = ({ children }) => {
   const { userProfile, loading } = useAuth();
-   console.log('AdminRoute Check:', { userProfile, loading }); // TAMBAHKAN LOG INI
+  const router = useRouter();
 
-  // Jika user ada DAN rolenya adalah 'admin', tampilkan halaman.
-  if (userProfile && userProfile.role === 'admin') {
-    return children;
+  useEffect(() => {
+    if (!loading && (!userProfile || userProfile.role !== 'admin')) {
+      router.replace('/'); 
+    }
+  }, [userProfile, loading, router]);
+
+  if (loading || !userProfile) {
+    return <p>Loading...</p>;
   }
 
-  // Jika tidak, arahkan ke halaman utama atau halaman login.
-  return <Navigate to="/" />;
+  if (userProfile.role !== 'admin') {
+    return null;
+  }
+
+  return <>{children}</>;
 };
 
-export default AdminRoute;
+export default AdminOnly;

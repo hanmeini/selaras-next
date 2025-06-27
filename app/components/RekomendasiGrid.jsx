@@ -31,6 +31,9 @@ const RekomendasiGrid = ({ kategori, pilihanMood, butuhAksesDifabel, searchTerm 
           q = query(collection(db, 'places'), ...conditions);
           
           const querySnapshot = await getDocs(q);
+console.log("Jumlah hasil:", querySnapshot.size);
+console.log("Dokumen hasil:", querySnapshot.docs.map(doc => doc.data()));
+
           const listDestinasi = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
           setMasterData(listDestinasi);
 

@@ -90,10 +90,15 @@ const QuizPage = () => {
   const router = useRouter();
 
   const handleSelect = (option) => {
+    const currentKey = quizQuestions[currentIndex].key; // Ambil key dari soal sekarang
     const newAnswers = [...answers];
-    newAnswers[currentIndex] = option;
+    newAnswers[currentIndex] = {
+      ...option,      // salin semua properti dari option (category atau value)
+      key: currentKey // tambahkan key untuk identifikasi
+    };
     setAnswers(newAnswers);
   };
+
 
   const handleNext = () => {
     if (currentIndex < quizQuestions.length - 1) {
