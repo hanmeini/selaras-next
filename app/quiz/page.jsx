@@ -90,11 +90,11 @@ const QuizPage = () => {
   const router = useRouter();
 
   const handleSelect = (option) => {
-    const currentKey = quizQuestions[currentIndex].key; // Ambil key dari soal sekarang
+    const currentKey = quizQuestions[currentIndex].key; 
     const newAnswers = [...answers];
     newAnswers[currentIndex] = {
-      ...option,      // salin semua properti dari option (category atau value)
-      key: currentKey // tambahkan key untuk identifikasi
+      ...option,      
+      key: currentKey 
     };
     setAnswers(newAnswers);
   };
@@ -192,7 +192,6 @@ const QuizPage = () => {
           Rekomendasi Wisata
         </Link>
       </div>
-      {/* Header (tidak berubah) */}
       <div className="flex flex-row items-center justify-center">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-2">
           QUIZ
@@ -200,7 +199,7 @@ const QuizPage = () => {
         <img
           src='/images/question.png'
           alt="question"
-          className="object-contain w-12 h-16 md:w-14 md:h-20 mt-[-10px]"
+          className=" animate-rotate-swing object-contain w-12 h-16 md:w-14 md:h-20 mt-[-10px]"
         />
       </div>
       <div className="text-center mb-6">
@@ -209,12 +208,8 @@ const QuizPage = () => {
         </p>
       </div>
 
-      {/* === PERUBAHAN LAYOUT UTAMA DI SINI === */}
-      {/* Menggunakan flexbox untuk layout responsif */}
       <div className="flex flex-col lg:flex-row max-w-6xl mx-auto gap-8">
-        {/* Kiri: Kartu Pertanyaan Utama */}
         <div className="w-full lg:w-2/3 bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
-          {/* Progress Bar (Hanya Muncul di Mobile) */}
           <div className="lg:hidden">
             <div className="flex justify-between text-sm text-gray-600 mb-2">
               <span>
@@ -286,7 +281,7 @@ const QuizPage = () => {
           </form>
         </div>
 
-        {/* Kanan: List Pertanyaan (Hanya Muncul di Desktop) */}
+        {/* Kanan List Pertanyaan  */}
         <div className="hidden lg:block w-full lg:w-1/3 bg-white p-6 rounded-2xl shadow-lg">
           <h3 className="text-md font-semibold mb-4 border-b pb-3">
             List Kuis Pertanyaan

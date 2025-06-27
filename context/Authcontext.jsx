@@ -2,17 +2,14 @@
 import React, { useContext, useState, useEffect, createContext } from 'react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { auth, db } from '../lib/firebase-config'; // Pastikan path ini benar
+import { auth, db } from '../lib/firebase-config'; 
 
-// Buat context auth
 const AuthContext = createContext(null);
 
-// Custom hook untuk akses context
 export function useAuth() {
   return useContext(AuthContext);
 }
 
-// Provider utama
 export function AuthProvider({ children }) {
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -20,7 +17,6 @@ export function AuthProvider({ children }) {
   useEffect(() => {
      console.log("⏳ Menunggu auth...");
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-         console.log("📌 onAuthStateChanged triggered:", user);
       if (user) {
         const docRef = doc(db, 'users', user.uid);
         try {
@@ -55,7 +51,7 @@ export function AuthProvider({ children }) {
           }
         } catch (error) {
           console.error('❌ Gagal memuat profil pengguna:', error);
-          await signOut(auth); // logout paksa jika error
+          await signOut(auth);
         }
       } else {
         console.log('👤 Tidak ada user login');

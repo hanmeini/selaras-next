@@ -13,11 +13,11 @@ const WisataCard = ({ item }) => {
     : 'Tidak ada deskripsi.';
 
   return (
-      <Link 
+    <Link 
       href={`/wisata/${id}`}
       className="block relative rounded-2xl overflow-hidden shadow-lg group transform hover:-translate-y-2 transition-transform duration-300 ease-in-out h-96"
     >
-    <div className="relative rounded-2xl overflow-hidden shadow-lg group transform hover:-translate-y-2 transition-transform duration-300 ease-in-out">
+    <div className="relative rounded-2xl overflow-hidden shadow-lg group transform">
       <img src={mainImage} alt={name} className="w-full h-96 object-cover" />
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>

@@ -1,11 +1,10 @@
 "use client"
 import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../../../lib/firebase-config'; // Sesuaikan path
+import { db } from '../../../lib/firebase-config';
 import AdminOnly from '../../../context/AdminRoute'
 
 const AdminDashboardPage = () => {
-  // State untuk setiap field di form
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
   const [jamOperasional, setJamOperasional] = useState('');
@@ -46,7 +45,7 @@ const AdminDashboardPage = () => {
     e.preventDefault();
     setMessage('Menyimpan...');
 
-    // Mengubah input textarea menjadi array (satu baris = satu item)
+
     const highlightsArray = highlights.split('\n').filter(line => line.trim() !== '');
     const infoUmumArray = infoUmum.split('\n').filter(line => line.trim() !== '');
     const aksesDetailsArray = aksesibilitasDetails.split('\n').filter(line => line.trim() !== '');
@@ -79,7 +78,6 @@ const AdminDashboardPage = () => {
     <div className="p-4 sm:p-8 lg:p-16 bg-gray-100 min-h-screen"> 
       <div className="max-w-2xl mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-md">
         
-        {/* PENYESUAIAN 2: Ukuran teks diubah agar lebih kecil di mobile */}
         <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center">Tambah Data Wisata Baru</h2>
         
         <form onSubmit={handleSubmit} className="space-y-4">

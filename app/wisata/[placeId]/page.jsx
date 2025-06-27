@@ -92,12 +92,12 @@ const DetailPage = () => {
       return "Fantastis";
     } else if (numericRating >= 4.1 && numericRating <= 4.5) {
       return "Luar Biasa";
-    } else if (numericRating === 4.0) { // dibuat === 4.0 agar lebih presisi
+    } else if (numericRating === 4.0) { 
       return "Bagus";
     } else if (numericRating >= 3.5 && numericRating < 4.0) {
       return "Cukup Baik";
     } else {
-      return "Ulasan"; // Teks default
+      return "Ulasan"; 
     }
   };
 

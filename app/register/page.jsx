@@ -76,7 +76,7 @@ const Register = () => {
                 </div>
             </div>
 
-            {/* Kolom Kanan: FORM (Responsif) */}
+            {/* FORM (Responsif) */}
             <div 
                 style={{ '--bg-image-url': `url(/images/login.png)` }}
                 className="

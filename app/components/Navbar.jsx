@@ -3,11 +3,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import React, { useState, useRef, useEffect } from "react";
 import { useAuth } from "../../context/Authcontext"; 
-
-// Ikon dari react-icons (pastikan sudah di-install: npm install react-icons)
 import { FiHome, FiHelpCircle, FiSend, FiMail, FiUser, FiChevronRight, FiChevronDown, FiLogOut } from 'react-icons/fi';
 
-// Komponen Ikon Internal
+
 const DefaultAvatar = ({ className = 'w-10 h-10' }) => ( 
   <div className={`${className} rounded-full bg-gray-200 flex items-center justify-center border-2 border-white shadow`}>
     <img src='/images/person-icon.png' alt="person icon" className="w-1/2 h-1/2" />
@@ -20,33 +18,28 @@ const CloseIcon = () => ( <svg className="w-6 h-6" fill="none" stroke="currentCo
 export default function Navbar() {
   const { userProfile, logout, loading  } = useAuth();
   const router = useRouter();
-
-  // State untuk dropdown di desktop
   const [layananOpen, setLayananOpen] = useState(false);
   const layananRef = useRef(null);
   const [profileOpen, setProfileOpen] = useState(false);
   const profileRef = useRef(null);
-  
-  // State untuk menu di mobile
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileLayananOpen, setMobileLayananOpen] = useState(false);
 
-  // Fungsi-fungsi event handler
+
   const toggleLayanan = () => setLayananOpen(!layananOpen);
   const toggleProfile = () => setProfileOpen(!profileOpen);
 
   const handleLogout = async () => {
     try {
       await logout();
-      setProfileOpen(false); // Tutup dropdown setelah logout
-      setMobileMenuOpen(false); // Tutup menu mobile jika terbuka
+      setProfileOpen(false);
+      setMobileMenuOpen(false); 
       router.push('/login');
     } catch (error) {
       console.error("Gagal untuk logout", error);
     }
   };
 
-  // Efek untuk menutup dropdown saat klik di luar
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (layananRef.current && !layananRef.current.contains(event.target)) setLayananOpen(false);
@@ -59,7 +52,7 @@ export default function Navbar() {
   if (loading) {
   console.log("⏳ Auth masih loading, Navbar belum ditampilkan.");
   console.log("📦 Navbar: userProfile =", userProfile);
-  return null; // atau skeleton UI
+  return null;
   
 }
 
@@ -68,7 +61,7 @@ export default function Navbar() {
       <nav className="fixed top-0 w-full z-40 bg-white/90 backdrop-blur-lg shadow-sm p-4">
         <div className="flex items-center justify-between max-w-7xl mx-auto h-12">
           
-          {/* KIRI: Hamburger (Mobile) atau Logo (Desktop) */}
+          {/* Hamburger (Mobile) atau Logo (Desktop) */}
           <div className="flex-1 flex justify-start">
             <button onClick={() => setMobileMenuOpen(true)} className="md:hidden p-2 -ml-2 text-gray-700">
               <HamburgerIcon />
@@ -78,7 +71,7 @@ export default function Navbar() {
             </Link>
           </div>
           
-          {/* TENGAH: Navigasi lengkap hanya untuk Desktop */}
+          {/*  Navigasi Desktop */}
           <div className="hidden md:flex flex-auto justify-center items-center gap-10 text-sm font-medium text-[#2E2E2E]">
             <div className="relative" ref={layananRef}>
                 <button onClick={toggleLayanan} className="flex items-center gap-1 hover:text-blue-600 hover:-translate-y-1 transition-all duration-300 ease-in-out">
@@ -115,7 +108,6 @@ export default function Navbar() {
                         <p className="text-gray-500 text-xs max-w-[200px] text-left">Cari tahu tempat paling pas untukmu.</p>
                       </div>
                     </Link>
-                    
                   </div>
                 )}
             </div>
@@ -123,7 +115,7 @@ export default function Navbar() {
             <Link href="/kontak" className="hover:text-blue-600 hover:-translate-y-1 transition-all duration-300 ease-in-out">Kontak Kami</Link>
           </div>
           
-          {/* KANAN: Logo (Mobile) atau Profil/Daftar (Desktop) */}
+          {/* Logo (Mobile) atau Profil/Daftar (Desktop) */}
           <div className="flex-1 flex items-center justify-end">
             <Link href="/" className="md:hidden">
                 <img src='/images/logo-pp.png' alt="logo" className="h-12 w-auto" />

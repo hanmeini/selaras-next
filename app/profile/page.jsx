@@ -143,7 +143,7 @@ const ProfilePage = () => {
           </aside>
 
           <main className="w-full md:w-3/4 lg:w-4/5">
-            <div className="p-8 rounded-2xl">
+            <div className="p-4 rounded-2xl">
               <h1 className="text-2xl font-bold text-[#003366] justify-start flex">Profil Saya</h1>
               <p className="text-gray-500 mt-1 mb-6 justify-start flex">Kelola informasi profil anda untuk mengkontrol, melindungi dan mengamankan akun anda.</p>
               

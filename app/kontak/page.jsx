@@ -3,10 +3,9 @@ import React from 'react';
 
 const Contact = () => {
   return (
-    // Kontainer utama menggunakan flex, dibuat vertikal di mobile dan horizontal di desktop (lg)
     <div className='flex flex-col lg:flex-row items-center justify-center min-h-screen w-full gap-12 lg:gap-16 p-8 lg:p-12 bg-white'>
 
-      {/* --- KOLOM KIRI: INFO KONTAK --- */}
+      {/* --- INFO KONTAK --- */}
       <div className='w-full lg:w-1/2 max-w-lg flex flex-col items-start relative mt-14 md:mt-0'>
         <div className='self-start mb-4'>
           <img src='/images/email-transparan.png' alt="emailTransparant" className='w-14 h-14'/>
@@ -36,11 +35,9 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* --- KOLOM KANAN: FORM --- */}
+      {/* --- FORM --- */}
       <div className='w-full lg:w-1/2 max-w-lg flex flex-col items-center justify-center rounded-3xl bg-gray-50 shadow-lg p-6 sm:p-8 mt-10 lg:mt-0'>
-        {/* Menggabungkan semua input dalam satu <form> */}
         <form className='w-full space-y-6'>
-          
           <div>
             <label className='text-left block mb-2 font-semibold text-md text-[#2E2E2E]'>Nama Lengkap</label>
             <div className='flex items-center gap-3 w-full p-3 bg-gray-200/70 rounded-xl'>

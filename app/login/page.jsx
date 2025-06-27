@@ -14,7 +14,6 @@ import { getRedirectResult } from "firebase/auth";
 const Login = () => {
     const router = useRouter();
     const { userProfile } = useAuth(); 
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -64,7 +63,6 @@ const Login = () => {
         setError('');
         setLoading(true);
         try {
-            // Gunakan popup di semua device
             await signInWithPopup(auth, provider);
         } catch (err) {
             console.error("Google login error:", err.code, err.message);
@@ -81,14 +79,13 @@ const Login = () => {
     return (
         <div className="w-full h-screen grid grid-cols-1 lg:grid-cols-2">
             
-            {/* Kolom Kiri: GAMBAR (Hanya Desktop) */}
+            {/*  GAMBAR (Hanya Desktop) */}
             <div className="hidden lg:block relative h-screen">
                 <img
                     src='/images/login.png'
                     alt="background"
                     className="h-full w-full object-cover"
                 />
-                {/* PERBAIKAN: Menggunakan navigate(-1) untuk tombol kembali */}
                 <button onClick={() => router.push('/')} className="z-10 absolute top-5 left-5 w-12 h-12 flex items-center justify-center text-white text-2xl border border-white rounded-full hover:bg-white hover:text-[#003366] transition">
                     ←
                 </button>
@@ -100,7 +97,7 @@ const Login = () => {
                 </div>
             </div>
 
-            {/* Kolom Kanan: FORM (Layout Responsif) */}
+            {/* FORM (Layout Responsif) */}
             <div 
                 className="
                     relative h-screen flex flex-col justify-center items-center p-4 
@@ -148,7 +145,6 @@ const Login = () => {
 
                         <p className="mt-6 text-sm text-gray-500 text-center">
                             Belum punya akun?{" "}
-                            {/* PERBAIKAN: Menggunakan komponen <Link> */}
                             <Link href="/register" className="text-[#003366] font-medium hover:underline">
                                 Daftar
                             </Link>

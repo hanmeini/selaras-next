@@ -5,6 +5,9 @@ import { Autoplay } from 'swiper/modules';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import 'swiper/css';
+import { useEffect } from 'react';
+import AOS from 'aos'; 
+import 'aos/dist/aos.css';
 import 'swiper/css/autoplay';
 import ppAhmad from '../../public/images/pp-ahmad.png'
 import ppByan from '../../public/images/pp-byan.png'
@@ -46,15 +49,22 @@ const LandingPage = () => {
       date: 'Feb 2025',
     }
   ];
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+    });
+  }, []);
   return (
     <section id='landingpage' className='overflow-x-hidden'>
         {/* home */}
         <section id='home' style={{ backgroundImage: `url('/images/bg-grid.png')` }} className="flex flex-col pt-20 bg-cover bg-center bg-no-repeat h-full min-w-screen">
           <div className='flex flex-col p-20 justify-center items-center relative'>
             <div className="absolute top-1/4 md:top-1/10 left-3 md:left-auto md:right-8 lg:right-72">
-                <img src='/images/Smiley Fun.png' alt="smile" />
+                <img src='/images/Smiley Fun.png' className="animate-float-y w-16 md:w-20 lg:w-24" alt="smile" />
             </div>
-            <div className='flex flex-col gap-10 items-center '>
+            <div className='flex flex-col gap-10 items-center'  data-aos="fade-right" data-aos-duration="2000">
               <h1 className='font-bold text-[2rem] md:text-5xl text-center'>Jelajahi  sesuai <span className='font-light text-[2rem] md:text-5xl'>MOOD</span>-mu</h1>
               <p className='text-[#8A9497] max-w-[80%] text-center'>Selaras bantu kamu temukan liburan terbaik sesuai mood, dengan rekomendasi dari <span className='font-bold text-black'>AI</span> ✨</p>
             </div>
@@ -83,13 +93,13 @@ const LandingPage = () => {
         <section id='about' className='min-h-screen min-w-screen flex items-center justify-center relative overflow-x-hidden md:mb-80 lg:mb-52'>
             <img src='/images/btr.png' className='absolute lg:top-20 md:top-0 md:left-36 bottom-24 -left-20 sm:-bottom-20 w-56 h-56 md:mt-32 md:w-30 md:h-30 items-start justify-start'/>
             <img src='/images/gunung.png' className='absolute md:top-0 md:right-28 bottom-28 -right-10 sm:-bottom-24 md:mt-32 mt-40 w-56 h-56 md:w-30 md:h-30 items-start justify-start'/>
-            <div className='max-w-2xl text-center top-0 absolute mt-52'>
+            <div className='max-w-2xl text-center top-0 absolute mt-52' data-aos="fade-up" data-aos-duration="1000">
                 <h1 className='text-[#AAB5B5] font-manrope text-md'>Mood kamu, Destinasi kami.</h1>
                 <p className='md:text-4xl px-5 text-3xl mt-4 text-transparent bg-clip-text bg-gradient-to-r from-[#1E1E1E] to-[#D3CFCF] font-semibold font-manrope'>Selaras adalah platform rekomendasi perjalanan berbasis AI yang membantu kamu menemukan destinasi liburan sesuai mood dan preferensimu.</p>
             </div>  
-            <img src='/images/emoji-senyum.png' className='absolute lg:top-[505px] lg:left-64 md:top-[480px] md:left-24 sm:top-[380px] sm:left-24 left-5 top-[450px] lg:w-20 lg:h-20 w-14 h-14'/>
+            <img src='/images/emoji-senyum.png' className='absolute animate-float-x lg:top-[505px] lg:left-64 md:top-[480px] md:left-24 sm:top-[380px] sm:left-24 left-5 top-[450px] lg:w-20 lg:h-20 w-14 h-14'/>
             <img src='/images/prambanan.png' className='absolute md:bottom-[400px] lg:bottom-0 lg:left-[610px] md:left-[300px] sm:-bottom-16 bottom-28 w-64 h-48 md:w-36 md:h-26'/>
-            <img src='/images/sparkle.png' className='lg:bottom-[400px] md:bottom-[500px] lg:right-64 md:right-[70px] absolute lg:w-36 right-7 bottom-[400px] lg:h-26 w-24 h-24'/>
+            <img src='/images/sparkle.png' className='lg:bottom-[400px] animate-float-y md:bottom-[500px] lg:right-64 md:right-[70px] absolute lg:w-36 right-7 bottom-[400px] lg:h-26 w-24 h-24'/>
         </section>
 
         {/* overview */}
@@ -98,7 +108,7 @@ const LandingPage = () => {
                 <div className="flex flex-col items-start justify-start">
                   <img src='/images/logo-noname.png' alt="logononame" className="lg:w-14 lg:h-14 w-10 h-10" />
                   <div className="text-start font-manrope font-semibold lg:text-5xl text-3xl mt-5 relative">
-                    <h1 className="text-[#FAFAFA] leading-snug">Nikmati <span className="text-[#B9D7F5]">Liburan </span>Dengan <span className="text-[#FFC300] relative inline-block">Cara Baru<img src='/images/ciprat.png' alt="ciprat" className="absolute lg:-top-5 lg:-right-10 lg:w-16 lg:h-14 w-14 h-14 -top-4 -right-12"/></span></h1>
+                    <h1 className="text-[#FAFAFA] leading-snug">Nikmati <span className="text-[#B9D7F5]">Liburan </span>Dengan <span className="text-[#FFC300] relative inline-block">Cara Baru<img src='/images/ciprat.png' alt="ciprat" className="absolute animate-rotate-swing lg:-top-5 lg:-right-10 lg:w-16 lg:h-14 w-14 h-14 -top-4 -right-12"/></span></h1>
                   </div>
                   <p className="text-[#DBDBDB] font-manrope lg:text-xl max-w-md text-start">Rasakan pengalaman liburan yang lebih personal, sesuai mood dan gayamu.</p>
                   <button onClick={() => router.push('/quiz')} className="font-semibold font-manrope text-[#003366] items-center lg:text-center text-sm lg:text-md bg-[#FAFAFA] lg:w-44 lg:h-11 w-36 h-11 rounded-4xl mt-6 flex hover:scale-85 duration-250 cursor-pointer"><img src='/images/emot-coba.png' alt="emot coba" className="lg:w-5 lg:h-5 w-3 h-3 mx-3"/>Coba Sekarang</button>
@@ -127,11 +137,11 @@ const LandingPage = () => {
         {/* testimony */}
         <section id='testimony'>
         <div className="mt-20 mb-48 min-w-screen h-max flex flex-col items-center relative">
-        <img src='/images/arrow-right.png' alt="arrowRight" className="hidden md:block left-0 absolute md:w-36 md:h-32 rotate-2" />
-        <img src='/images/arrow-left.png' alt="arrowLeft" className="hidden md:block right-0 absolute md:w-36 md:h-32" />
-        <img src='/images/hand.png' alt="hand" className="w-15 h-15" />
-        <h1 className="text-2xl md:text-5xl font-semibold font-manrope text-[#2E2E2E] mt-3">Cerita Seru Mereka</h1>
-        <p className="text-[#8A9497] mt-3">Langsung dari pengalaman mereka.</p>
+        <img src='/images/arrow-right.png' alt="arrowRight" className="hidden md:block left-0 absolute md:w-36 md:h-32 rotate-2" data-aos="fade-right" data-aos-duration="1000" />
+        <img src='/images/arrow-left.png' alt="arrowLeft" className="hidden md:block right-0 absolute md:w-36 md:h-32" data-aos="fade-left" data-aos-duration="1000"  />
+        <img src='/images/hand.png' alt="hand" className="animate-rotate-swing w-15 h-15" />
+        <h1 className="text-2xl md:text-5xl font-semibold font-manrope text-[#2E2E2E] mt-3" data-aos="fade-up" data-aos-duration="1000">Cerita Seru Mereka</h1>
+        <p className="text-[#8A9497] mt-3" data-aos="fade-up" data-aos-duration="1000">Langsung dari pengalaman mereka.</p>
 
         {/* Desktop layout */}
         <div className='mt-10 min-w-screen min-h-screen lg:flex lg:flex-col items-center relative hidden'>

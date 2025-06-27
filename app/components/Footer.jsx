@@ -23,10 +23,9 @@ export default function Footer() {
           <div className='flex flex-col'>
           <h1 className='text-white font-semibold text-left lg:text-center mb-2'>Navigasi</h1>
           <div className='text-left flex flex-col lg:ml-10'>
-            <Link href='/#landingpage' className="text-[#B3B3B3] font-manrope text-md  hover:text-white hover:translate-x-1 transition-all duration-300 ease-in-out">Beranda</Link>
-            <Link href='/#about' className="text-[#B3B3B3] font-manrope text-md  hover:text-white hover:translate-x-1 transition-all duration-300 ease-in-out">Tentang Kami</Link>
-            <Link href='/#testimony' className="text-[#B3B3B3] font-manrope text-md  hover:text-white hover:translate-x-1 transition-all duration-300 ease-in-out">Cerita Mereka</Link>
+            <Link href='/rekomendasi' className="text-[#B3B3B3] font-manrope text-md  hover:text-white hover:translate-x-1 transition-all duration-300 ease-in-out">Rekomendasi</Link>
             <Link href='/kontak' className="text-[#B3B3B3] font-manrope text-md  hover:text-white hover:translate-x-1 transition-all duration-300 ease-in-out">Kontak Kami</Link>
+            <Link href='/profile' className="text-[#B3B3B3] font-manrope text-md  hover:text-white hover:translate-x-1 transition-all duration-300 ease-in-out">Profile Saya</Link>
           </div>
         </div>
 
