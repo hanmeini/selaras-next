@@ -53,7 +53,7 @@ const LandingPage = () => {
   useEffect(() => {
     AOS.init({
       duration: 800,
-      once: false,
+      once: true,
     });
   }, []);
   return (
@@ -90,17 +90,45 @@ const LandingPage = () => {
         </section>
 
         {/* about */}
-        <section id='about' className='min-h-screen min-w-screen flex items-center justify-center relative overflow-x-hidden md:mb-80 lg:mb-52'>
-            <img src='/images/btr.png' className='absolute lg:top-20 md:top-0 md:left-36 bottom-24 -left-20 sm:-bottom-20 w-56 h-56 md:mt-32 md:w-30 md:h-30 items-start justify-start'/>
-            <img src='/images/gunung.png' className='absolute md:top-0 md:right-28 bottom-28 -right-10 sm:-bottom-24 md:mt-32 mt-40 w-56 h-56 md:w-30 md:h-30 items-start justify-start'/>
-            <div className='max-w-2xl text-center top-0 absolute mt-52' data-aos="fade-up" data-aos-duration="1000">
-                <h1 className='text-[#AAB5B5] font-manrope text-md'>Mood kamu, Destinasi kami.</h1>
-                <p className='md:text-4xl px-5 text-3xl mt-4 text-transparent bg-clip-text bg-gradient-to-r from-[#1E1E1E] to-[#D3CFCF] font-semibold font-manrope'>Selaras adalah platform rekomendasi perjalanan berbasis AI yang membantu kamu menemukan destinasi liburan sesuai mood dan preferensimu.</p>
-            </div>  
-            <img src='/images/emoji-senyum.png' className='absolute animate-float-x lg:top-[505px] lg:left-64 md:top-[480px] md:left-24 sm:top-[380px] sm:left-24 left-5 top-[450px] lg:w-20 lg:h-20 w-14 h-14'/>
-            <img src='/images/prambanan.png' className='absolute md:bottom-[400px] lg:bottom-0 lg:left-[610px] md:left-[300px] sm:-bottom-16 bottom-28 w-64 h-48 md:w-36 md:h-26'/>
-            <img src='/images/sparkle.png' className='lg:bottom-[400px] animate-float-y md:bottom-[500px] lg:right-64 md:right-[70px] absolute lg:w-36 right-7 bottom-[400px] lg:h-26 w-24 h-24'/>
+        <section
+          id="about"
+          className="min-h-screen min-w-screen flex items-center justify-center relative overflow-x-hidden overflow-y-hidden mb-32"
+        >
+          <img
+            src="/images/btr.png"
+            className="absolute lg:top-40 md:top-0 md:left-36 top-[520px] -left-20 sm:top-[580px] w-56 h-56 md:w-30 md:h-30 items-start justify-start"
+          />
+          <img
+            src="/images/gunung.png"
+            className="absolute lg:top-40 md:top-0 md:right-28 top-[520px] -right-10 sm:top-[580px] w-56 h-56 md:w-30 md:h-30 items-start justify-start"
+          />
+
+          <div
+            className="max-w-2xl text-center z-10 top-0 absolute mt-52"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            <h1 className="text-[#AAB5B5] font-manrope text-md">Mood kamu, Destinasi kami.</h1>
+            <p className="md:text-4xl px-5 text-3xl mt-4 text-transparent bg-clip-text bg-gradient-to-r from-[#1E1E1E] to-[#D3CFCF] font-semibold font-manrope">
+              Selaras adalah platform rekomendasi perjalanan berbasis AI yang membantu kamu menemukan
+              destinasi liburan sesuai mood dan preferensimu.
+            </p>
+          </div>
+
+          <img
+            src="/images/emoji-senyum.png"
+            className="absolute animate-float-x lg:top-[505px] lg:left-64 md:top-[480px] md:left-24 sm:top-[380px] sm:left-24 left-5 top-[450px] lg:w-20 lg:h-20 w-14 h-14"
+          />
+          <img
+            src="/images/prambanan.png"
+            className="absolute md:top-[500px] lg:top-[500px] lg:left-[610px] md:left-[300px] sm:top-[580px] top-[550px] w-64 h-48 md:w-36 md:h-26"
+          />
+          <img
+            src="/images/sparkle.png"
+            className="lg:top-[505px] animate-float-y md:top-[480px] lg:right-64 md:right-[70px] sm:top-[380px] absolute lg:w-36 right-7 top-[450px] lg:h-26 w-24 h-24"
+          />
         </section>
+
 
         {/* overview */}
         <section id='overview'>
