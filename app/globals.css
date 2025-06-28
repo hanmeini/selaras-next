@@ -1,5 +1,7 @@
+
 @import "tailwindcss";
 @import "aos/dist/aos.css";
+
 
 /* atas bawah */
 @keyframes float-y {
@@ -92,8 +94,8 @@ body {
   margin: 0;
   padding: 0;
   background-color: #ffffff;
-  font-family: var(--font-sans);
   scroll-behavior: smooth;
   overflow-x: hidden;
+  font-family: 'Manrope', sans-serif;
 }
 

@@ -16,6 +16,9 @@ module.exports = {
           "50%": { transform: "translateY(-15px)" },
         },
       },
+      fontFamily: {
+        manrope: ['var(--font-manrope)'],
+      },
     },
   },
   plugins: [],
