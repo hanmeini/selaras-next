@@ -146,12 +146,13 @@ const RekomendasiGrid = ({ kategori, pilihanMood, butuhAksesDifabel, searchTerm 
               Rekomendasi Untukmu
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              <Swiper
-                slidesPerView={"auto"}
-                spaceBetween={16}
-                grabCursor={true}
-                className="!px-2 md:!px-8"
-              >
+                <Swiper
+                  spaceBetween={10}
+                  grabCursor={true}
+                  slidesPerView={"auto"}
+                  centeredSlides={true} 
+                  className="!px-2 md:!px-8"
+                >
                 {displayedData.map((item) => (
                   <SwiperSlide key={item.id} className="!w-[280px] md:!w-[320px]">
                     <WisataCard item={item} />
