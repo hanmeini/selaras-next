@@ -5,12 +5,14 @@ import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import WisataCard from "./WisataCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { motion } from "framer-motion";
+import LoadingWisataCard from "./LoadingWisataCard"; 
 
 const RekomendasiGrid = ({ kategori, pilihanMood, butuhAksesDifabel, searchTerm }) => {
   const [masterData, setMasterData] = useState(null);
   const [displayedData, setDisplayedData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isFallback, setIsFallback] = useState(false); // <- Tambahan
+  const [isFallback, setIsFallback] = useState(false); 
 
   // Ambil data dari Firestore
   const fetchDestinasi = async () => {
@@ -65,7 +67,9 @@ const RekomendasiGrid = ({ kategori, pilihanMood, butuhAksesDifabel, searchTerm 
       console.error("Query Gagal!", error);
     }
 
-    setLoading(false);
+    setTimeout(()=>{
+      setLoading(false);
+    }, 1000)
   };
 
   // Jalankan fetch saat mount atau kategori berubah
@@ -102,7 +106,30 @@ const RekomendasiGrid = ({ kategori, pilihanMood, butuhAksesDifabel, searchTerm 
     }
   }, [searchTerm, masterData]);
 
-  if (loading) return <div className="text-center p-10">Memuat rekomendasi...</div>;
+  // Loading
+  if (loading) {
+    return (
+      <section className="py-12 space-y-12 px-4 md:px-8">
+        {Array.from({ length: 4 }).map((_, index) => (
+          <div key={index} className="space-y-6">
+            <div className="w-1/3 h-6 bg-gray-300 rounded animate-pulse" />
+            <Swiper
+              slidesPerView={"auto"}
+              spaceBetween={16}
+              grabCursor={true}
+              className="!px-1 md:!px-4"
+            >
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SwiperSlide key={i} className="!w-[280px] md:!w-[320px] space-y-4">
+                  <LoadingWisataCard />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        ))}
+      </section>
+    );
+  }
 
   const hasResults =
     displayedData &&
@@ -119,9 +146,18 @@ const RekomendasiGrid = ({ kategori, pilihanMood, butuhAksesDifabel, searchTerm 
               Rekomendasi Untukmu
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {displayedData.map((item) => (
-                <WisataCard key={item.id} item={item} />
-              ))}
+              <Swiper
+                slidesPerView={"auto"}
+                spaceBetween={16}
+                grabCursor={true}
+                className="!px-2 md:!px-8"
+              >
+                {displayedData.map((item) => (
+                  <SwiperSlide key={item.id} className="!w-[280px] md:!w-[320px]">
+                    <WisataCard item={item} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </div>
         ) : (
@@ -141,11 +177,16 @@ const RekomendasiGrid = ({ kategori, pilihanMood, butuhAksesDifabel, searchTerm 
             </p>
 
             {Array.isArray(masterData) && masterData.length > 0 && (
-              <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {masterData.map((item) => (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+              >
+                {displayedData.map((item) => (
                   <WisataCard key={item.id} item={item} />
                 ))}
-              </div>
+              </motion.div>
             )}
           </div>
         )

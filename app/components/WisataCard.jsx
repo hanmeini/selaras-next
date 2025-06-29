@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 import Link from 'next/link';
+import { motion } from "framer-motion";
 
 const WisataCard = ({ item }) => {
   const { id, galleryImages, name, location, description } = item;
@@ -13,6 +14,11 @@ const WisataCard = ({ item }) => {
     : 'Tidak ada deskripsi.';
 
   return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
     <Link 
       href={`/wisata/${id}`}
       className="block relative rounded-2xl overflow-hidden shadow-lg group transform hover:-translate-y-2 transition-transform duration-300 ease-in-out h-96"
@@ -32,6 +38,7 @@ const WisataCard = ({ item }) => {
       </div>
     </div>
     </Link>
+    </motion.div>
   );
 };
 

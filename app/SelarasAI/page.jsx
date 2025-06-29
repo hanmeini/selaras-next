@@ -222,7 +222,7 @@ const handleSendMessage = async (e) => {
                         alt="Ikon Selaras AI" 
                         width={32} 
                         height={32} 
-                        className="rounded-full object-cover"
+                        className="animate-float-y rounded-full object-cover"
                       /> 
                 </div>
                 <h2 className="mt-4 text-xl md:text-2xl font-semibold text-gray-800">Halo! Lagi pengen liburan? Yuk cari tempat seru bareng aku!</h2>

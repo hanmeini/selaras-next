@@ -1,53 +1,52 @@
-"use client"
-import React from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import 'swiper/css';
-import { useEffect } from 'react';
-import AOS from 'aos'; 
-import 'aos/dist/aos.css';
-import 'swiper/css/autoplay';
-import ppAhmad from '../../public/images/pp-ahmad.png'
-import ppByan from '../../public/images/pp-byan.png'
-import ppErland from '../../public/images/pp-erland.png'
-import ppNobel from '../../public/images/pp-nobel.png'
-
+"use client";
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import "swiper/css";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "swiper/css/autoplay";
+import ppAhmad from "../../public/images/pp-ahmad.png";
+import ppByan from "../../public/images/pp-byan.png";
+import ppErland from "../../public/images/pp-erland.png";
+import ppNobel from "../../public/images/pp-nobel.png";
 
 const LandingPage = () => {
   const router = useRouter();
   const testimonyCards = [
     {
-      name: 'Biantara Nadif',
-      role: 'Traveler',
+      name: "Byantara Nadif",
+      role: "Traveler",
       image: ppByan,
-      text: 'Baru kali ini cari tempat liburan gampang banget. Tinggal pilih mood, langsung dapat rekomendasi yang pas! Selaras benar-benar ngebantu aku nemuin tempat-tempat yang belum pernah kepikiran sebelumnya.',
-      tags: ['#Eksplor', '#Tenang'],
-      date: 'Mei 2025',
+      text: "Baru kali ini cari tempat liburan gampang banget. Tinggal pilih mood, langsung dapat rekomendasi yang pas! Selaras sangat ngebantu aku nemuin tempat liburan.",
+      tags: ["#Eksplor", "#Tenang"],
+      date: "Mei 2025",
     },
     {
-      name: 'Erland Pramatta',
-      role: 'Globaltraveler',
+      name: "Erland Pramatta",
+      role: "Globaltraveler",
       image: ppErland,
-      text: 'Pilihan tempatnya sesuai banget sama moodku waktu itu. Dapat rekomendasi hidden gem yang nggak kepikiran sebelumnya!',
-      date: 'April 2025',
+      text: "Pilihan tempatnya sesuai banget sama moodku waktu itu. Dapat rekomendasi hidden gem yang nggak kepikiran sebelumnya!",
+      date: "April 2025",
     },
     {
-      name: 'Amanda Nobela',
-      role: 'Product Designer',
+      name: "Amanda Nobela",
+      role: "Product Designer",
       image: ppNobel,
-      text: 'Selaras ngasih rekomendasi ke Ubud saat aku lagi butuh ketenangan. Suasana alamnya bikin rileks banget!',
-      date: 'Maret 2025',
+      text: "Selaras ngasih rekomendasi ke Ubud saat aku lagi butuh ketenangan. Suasana alamnya bikin rileks banget!",
+      date: "Maret 2025",
     },
     {
-      name: 'Ahmad Raihan',
-      role: 'IT Consultan',
+      name: "Ahmad Raihan",
+      role: "IT Consultan",
       image: ppAhmad,
-      text: 'Awalnya aku bingung mau liburan ke mana karena lagi butuh suasana yang tenang tapi tetap punya pemandangan yang indah. Setelah isi kuis di Selaras, aku direkomendasikan ke Sumba, dan ternyata itu spot yang luar biasa!',
-      tags: ['#Eksplor', '#Tenang'],
-      date: 'Feb 2025',
-    }
+      text: "Awalnya aku bingung mau liburan ke mana karena lagi butuh suasana yang tenang tapi tetap punya pemandangan yang indah. Setelah isi kuis di Selaras, aku direkomendasikan ke Sumba, dan ternyata itu spot yang luar biasa!",
+      tags: ["#Eksplor", "#Tenang"],
+      date: "Feb 2025",
+    },
   ];
 
   useEffect(() => {
@@ -151,11 +150,11 @@ const LandingPage = () => {
       >
         <img
           src="/images/btr.png"
-          className="absolute lg:top-40 md:top-0 md:left-36 top-[520px] -left-20 sm:top-[580px] w-56 h-56 md:w-30 md:h-30 items-start justify-start"
+          className="absolute lg:top-40 md:top-0 md:left-36 top-[560px] -left-20 sm:top-[580px] w-56 h-56 md:w-30 md:h-30 items-start justify-start"
         />
         <img
           src="/images/gunung.png"
-          className="absolute lg:top-40 md:top-0 md:right-28 top-[520px] -right-10 sm:top-[580px] w-56 h-56 md:w-30 md:h-30 items-start justify-start"
+          className="absolute lg:top-40 md:top-0 md:right-28 top-[560px] -right-10 sm:top-[580px] w-56 h-56 md:w-30 md:h-30 items-start justify-start"
         />
 
         <div
@@ -175,15 +174,15 @@ const LandingPage = () => {
 
         <img
           src="/images/emoji-senyum.png"
-          className="absolute animate-float-x lg:top-[505px] lg:left-64 md:top-[480px] md:left-24 sm:top-[380px] sm:left-24 left-5 top-[450px] lg:w-20 lg:h-20 w-14 h-14"
+          className="absolute animate-float-x lg:top-[505px] lg:left-64 md:top-[480px] md:left-24 sm:top-[380px] sm:left-24 left-5 top-[480px] lg:w-20 lg:h-20 w-14 h-14"
         />
         <img
           src="/images/prambanan.png"
-          className="absolute md:top-[500px] lg:top-[500px] lg:left-[610px] md:left-[300px] sm:top-[580px] top-[550px] w-64 h-48 md:w-36 md:h-26"
+          className="absolute md:top-[500px] lg:top-[500px] lg:left-[610px] md:left-[300px] sm:top-[580px] top-[580px] w-64 h-48 md:w-36 md:h-26"
         />
         <img
           src="/images/sparkle.png"
-          className="lg:top-[505px] animate-float-y md:top-[480px] lg:right-64 md:right-[70px] sm:top-[380px] absolute lg:w-36 right-7 top-[450px] lg:h-26 w-24 h-24"
+          className="lg:top-[505px] animate-float-y md:top-[480px] lg:right-64 md:right-[70px] sm:top-[380px] absolute lg:w-36 right-7 top-[480px] lg:h-26 w-24 h-24"
         />
       </section>
 
@@ -196,7 +195,7 @@ const LandingPage = () => {
               alt="logononame"
               className="lg:w-14 lg:h-14 w-10 h-10"
             />
-            <div className="text-start font-manrope font-semibold lg:text-5xl text-3xl mt-5 relative">
+            <div className="text-start font-manrope font-semibold lg:text-5xl text-3xl mt-5 relative" data-aos="fade-right" data-aos-duration="1000">
               <h1 className="text-[#FAFAFA] leading-snug">
                 Nikmati <span className="text-[#B9D7F5]">Liburan </span>Dengan{" "}
                 <span className="text-[#FFC300] relative inline-block">
@@ -227,7 +226,7 @@ const LandingPage = () => {
           </div>
 
           {/* map */}
-          <div className=" flex mt-10 bottom-2 relative">
+          <div className=" flex mt-10 bottom-2 relative" data-aos="fade-up" data-aos-duration="1000">
             <img
               src="/images/map.png"
               alt="map"
@@ -329,7 +328,7 @@ const LandingPage = () => {
                   </div>
                   <div className="flex flex-col items-start justify-start">
                     <h1 className="font-semibold font-manrope text-[#2E2E2E] text-lg mt-2">
-                      Biantara Nadif
+                      Byantara Nadif
                     </h1>
                     <p className="font-semibold font-manrope text-[#939393] text-md">
                       Traveler
@@ -339,8 +338,7 @@ const LandingPage = () => {
                 <p className="font-manrope text-lg mx-4 text-left text-[#939393]">
                   Baru kali ini cari tempat liburan gampang banget. Tinggal
                   pilih mood, langsung dapat rekomendasi yang pas! Selaras
-                  benar-benar ngebantu aku nemuin tempat-tempat yang belum
-                  pernah kepikiran sebelumnya.
+                  sangat ngebantu aku nemuin tempat liburan.
                 </p>
                 <div className="flex flex-row gap-3 items-start justify-start ml-4 mt-6">
                   <div className="w-20 h-6 bg-[#BEE1E6] rounded-lg items-center flex flex-row justify-center">
@@ -528,6 +526,6 @@ const LandingPage = () => {
       </section>
     </section>
   );
-}
+};
 
-export default LandingPage
+export default LandingPage;

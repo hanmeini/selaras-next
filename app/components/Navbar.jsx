@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "../../context/Authcontext"; 
 import { FiHome, FiHelpCircle, FiSend, FiMail, FiUser, FiChevronRight, FiChevronDown, FiLogOut } from 'react-icons/fi';
 
@@ -50,11 +51,28 @@ export default function Navbar() {
   }, []);
 
   if (loading) {
-  console.log("⏳ Auth masih loading, Navbar belum ditampilkan.");
-  console.log("📦 Navbar: userProfile =", userProfile);
-  return null;
-  
-}
+    console.log("⏳ Auth masih loading, Navbar belum ditampilkan.");
+    console.log("📦 Navbar: userProfile =", userProfile);
+    return null;
+  }
+
+  // animasi
+  const sidebarVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.07,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  // untuk masing-masing item
+  const itemVariants = {
+    hidden: { opacity: 0, x: -30 },
+    visible: { opacity: 1, x: 0, transition: { type: "tween" } },
+  };
+
 
   return (
     <>
@@ -154,65 +172,109 @@ export default function Navbar() {
       </nav>
 
       {/* --- Panel Menu Mobile --- */}
-      <div className={`fixed top-0 left-0 h-full w-full bg-black/50 z-50 transition-opacity md:hidden ${mobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setMobileMenuOpen(false)}>
-        <div className={`fixed top-0 left-0 h-full w-4/5 max-w-xs bg-white shadow-xl transition-transform duration-300 ease-in-out ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`} onClick={(e) => e.stopPropagation()}>
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed top-0 left-0 h-full w-full bg-black/50 z-50 md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="fixed top-0 left-0 h-full w-4/5 max-w-xs bg-white shadow-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
             <div className="flex justify-between items-center p-4 border-b">
                 <img src='/images/logo.png' alt="logo" className="h-10 w-auto" />
-                <button onClick={() => setMobileMenuOpen(false)} className="p-2"><CloseIcon /></button>
-            </div>
-            
-            <nav className="flex flex-col p-4 space-y-1">
-              {userProfile ? (
-                <Link href="/profile" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 p-3 mb-2 rounded-lg bg-gray-100">
-                  {userProfile.photoURL ? <img src={userProfile.photoURL} alt="Profil" className="w-10 h-10 rounded-full object-cover"/> : <DefaultAvatar />}
-                  <div className="truncate justify-start flex flex-col">
-                    <p className="font-bold text-sm text-gray-800 text-left">{userProfile.name || 'Pengguna'}</p>
-                    <p className="text-xs text-gray-500">{userProfile.email}</p>
-                  </div>
-                </Link>
-              ) : (
-                <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between p-3 mb-2 text-gray-700 font-medium rounded-lg bg-blue-50 hover:bg-blue-100">
-                  <span className="flex items-center gap-3"><FiUser className="w-6 h-6"/>Daftar</span>
-                  <FiChevronRight className="w-6 h-6" />
-                </Link>
-              )}
-              
-
-              <Link href="/rekomendasi" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 p-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100">
-                <FiHome className="w-6 h-6" /> Rekomendasi
-              </Link>              
-              <div>
-                <button onClick={() => setMobileLayananOpen(!mobileLayananOpen)} className="flex items-center justify-between w-full p-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100">
-                  <span className="flex items-center gap-3"><FiSend className="w-6 h-6" /> Jelajahi</span>
-                  <FiChevronDown className={`transition-transform ${mobileLayananOpen ? 'rotate-180' : ''} w-6 h-6`} />
+                <button onClick={() => setMobileMenuOpen(false)} className="p-2 transition hover:rotate-90 duration-300">
+                  <CloseIcon />
                 </button>
-                {mobileLayananOpen && (
-                  <div className="pl-8 pt-1 space-y-1">
-                    <Link href="/SelarasAI" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 p-2 font-medium text-gray-600 rounded-lg hover:bg-gray-100">
-                      <img className="w-10 h-10 bg-[#003366] p-2 rounded-xl" src='/images/stars.png' alt="ai icon"/> Selaras AI
+            </div>
+            <motion.nav
+              className="flex flex-col p-4 space-y-1"
+              variants={{
+                hidden: {},
+                show: {
+                  transition: {
+                    staggerChildren: 0.1, // jeda antar item
+                  },
+                },
+              }}
+              initial="hidden"
+              animate="show"
+            >
+              {[
+                userProfile ? (
+                  <motion.div key="profile" variants={{ hidden: { x: -30, opacity: 0 }, show: { x: 0, opacity: 1 } }}>
+                    <Link href="/profile" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 p-3 mb-2 rounded-lg bg-gray-100">
+                      {userProfile.photoURL ? <img src={userProfile.photoURL} alt="Profil" className="w-10 h-10 rounded-full object-cover"/> : <DefaultAvatar />}
+                      <div className="truncate justify-start flex flex-col">
+                        <p className="font-bold text-sm text-gray-800 text-left">{userProfile.name || 'Pengguna'}</p>
+                        <p className="text-xs text-gray-500">{userProfile.email}</p>
+                      </div>
                     </Link>
-                    <Link href="/quiz" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 p-2 font-medium text-gray-600 rounded-lg hover:bg-gray-100">
-                      <img className="w-10 h-10 bg-[#003366] p-2 rounded-xl" src='/images/quiz.png' alt="quiz icon"/> Selaras Quiz
+                  </motion.div>
+                ) : (
+                  <motion.div key="register" variants={{ hidden: { x: -30, opacity: 0 }, show: { x: 0, opacity: 1 } }}>
+                    <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between p-3 mb-2 text-gray-700 font-medium rounded-lg bg-blue-50 hover:bg-blue-100">
+                      <span className="flex items-center gap-3"><FiUser className="w-6 h-6" />Daftar</span>
+                      <FiChevronRight className="w-6 h-6" />
                     </Link>
-                  </div>
-                )}
-              </div>
-
-              <Link href="/kontak" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 p-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100">
-                <FiMail className="w-6 h-6" /> Kontak Kami
-              </Link>
-
-              {userProfile && (
-                <>
-                  <hr className="my-2"/>
-                  <button onClick={handleLogout} className="flex items-center gap-3 p-3 text-red-600 font-medium rounded-lg hover:bg-red-50">
-                    <FiLogOut className="w-6 h-6" /> Logout
+                  </motion.div>
+                ),
+                <motion.div key="rekomendasi" variants={{ hidden: { x: -30, opacity: 0 }, show: { x: 0, opacity: 1 } }}>
+                  <Link href="/rekomendasi" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 p-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100">
+                    <FiHome className="w-6 h-6" /> Rekomendasi
+                  </Link>
+                </motion.div>,
+                <motion.div key="jelajahi" variants={{ hidden: { x: -30, opacity: 0 }, show: { x: 0, opacity: 1 } }}>
+                  <button onClick={() => setMobileLayananOpen(!mobileLayananOpen)} className="flex items-center justify-between w-full p-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100">
+                    <span className="flex items-center gap-3"><FiSend className="w-6 h-6" /> Jelajahi</span>
+                    <FiChevronDown className={`transition-transform ${mobileLayananOpen ? 'rotate-180' : ''} w-6 h-6`} />
                   </button>
-                </>
-              )}
-            </nav>
-        </div>
-      </div>
+                  <AnimatePresence initial={false}>
+                    {mobileLayananOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden pl-8 pt-1 space-y-1"
+                      >
+                        <Link href="/SelarasAI" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 p-2 font-medium text-gray-600 rounded-lg hover:bg-gray-100">
+                          <img className="w-10 h-10 bg-[#003366] p-2 rounded-xl" src='/images/stars.png' alt="ai icon" /> Selaras AI
+                        </Link>
+                        <Link href="/quiz" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 p-2 font-medium text-gray-600 rounded-lg hover:bg-gray-100">
+                          <img className="w-10 h-10 bg-[#003366] p-2 rounded-xl" src='/images/quiz.png' alt="quiz icon" /> Selaras Quiz
+                        </Link>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>,
+                <motion.div key="kontak" variants={{ hidden: { x: -30, opacity: 0 }, show: { x: 0, opacity: 1 } }}>
+                  <Link href="/kontak" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 p-3 text-gray-700 font-medium rounded-lg hover:bg-gray-100">
+                    <FiMail className="w-6 h-6" /> Kontak Kami
+                  </Link>
+                </motion.div>,
+                userProfile && (
+                  <motion.div key="logout" variants={{ hidden: { x: -30, opacity: 0 }, show: { x: 0, opacity: 1 } }}>
+                    <hr className="my-2" />
+                    <button onClick={handleLogout} className="flex items-center gap-3 p-3 text-red-600 font-medium rounded-lg hover:bg-red-50">
+                      <FiLogOut className="w-6 h-6" /> Logout
+                    </button>
+                  </motion.div>
+                )
+              ]}
+            </motion.nav>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

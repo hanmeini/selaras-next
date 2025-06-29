@@ -10,6 +10,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { FiMapPin, FiClock, FiChevronLeft, FiStar, FiCheck } from 'react-icons/fi';
 import AuthGuard from '../../components/AuthGuard';
+import LoadingDetailPage from '../../components/LoadingDetailPage';
+import { motion } from "framer-motion";
 
 const PlaceContent = ({ place }) => (
   <>
@@ -80,7 +82,9 @@ const DetailPage = () => {
       } else {
         console.log("Wisata tidak ditemukan!");
       }
+      setTimeout(() => {
       setLoading(false);
+    }, 1000);
     };
     fetchPlace();
   }, [placeId]);
@@ -101,7 +105,7 @@ const DetailPage = () => {
     }
   };
 
-  if (loading) return <div className="flex justify-center items-center h-screen font-semibold">Memuat...</div>;
+  if (loading) return <LoadingDetailPage />;
   if (!place) return <div className="flex justify-center items-center h-screen font-semibold">Maaf, data wisata tidak ditemukan.</div>;
   const ratingText = getRatingDescription(place.rating);
 
@@ -109,7 +113,10 @@ const DetailPage = () => {
     <>
       {/* === TAMPILAN MOBILE === */}
       <AuthGuard>
-      <div className="md:hidden bg-gray-50 min-h-screen">
+      <motion.div      
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }} className="md:hidden bg-gray-50 min-h-screen">
         <div className="relative">
           <button onClick={() => router.back(-1)} className="absolute top-4 left-4 z-20 bg-white/70 p-2 rounded-full shadow-lg backdrop-blur-sm">
             <FiChevronLeft className="w-6 h-6 text-gray-800" />
@@ -156,10 +163,13 @@ const DetailPage = () => {
           
           <PlaceContent place={place} />
         </div>
-      </div>
+      </motion.div>
 
       {/* === TAMPILAN DESKTOP === */}
-      <div className="hidden md:block bg-white">
+      <motion.div         
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }} className="hidden md:block bg-white">
         <header className="bg-[#003366] text-white p-12 md:rounded-b-4xl lg:rounded-b-[4rem] relative">
           <button onClick={() => router.back(-1)} className="absolute top-6 left-6 z-20 bg-white/20 p-2 rounded-full hover:bg-white/40 transition">
             <FiChevronLeft className="w-6 h-6 text-white" />
@@ -199,7 +209,7 @@ const DetailPage = () => {
 
           <PlaceContent place={place} />
         </main>
-      </div>
+      </motion.div>
       </AuthGuard>
     </>
   );
