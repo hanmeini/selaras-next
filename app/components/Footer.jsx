@@ -45,13 +45,13 @@ export default function Footer() {
         <img src='/images/garis.png' alt="line" className='w-full h-auto' />
       </div>
 
-      <div className='flex mx-5 mt-5'>
-        <p className='text-[#D6D6D6] text-md font-semibold'>&copy; 2025 Selaras. Semua hak dilindungi.</p>
+      <div className='flex mx-5 p-3'>
+        <p className='text-[#D6D6D6] text-[8px] md:text-xs font-semibold'>&copy; 2025 Selaras. Semua hak dilindungi.</p>
         <div className='flex flex-row gap-1 md:gap-4 right-4 absolute w-1/2 justify-end'>
-          <img src='/images/slack.png' alt="" className='w-6 h-6'/>
-          <img src='/images/linkedin.png' alt="" className='w-6 h-6'/>
-          <img src='/images/twitter.png' alt="" className='w-6 h-6'/>
-          <img src='/images/instagram.png' alt="" className='w-6 h-6'/>
+          <img src='/images/slack.png' alt="" className='w-4 h-4 md:w-6 md:h-6'/>
+          <img src='/images/linkedin.png' alt="" className='w-4 h-4 md:w-6 md:h-6'/>
+          <img src='/images/twitter.png' alt="" className='w-4 h-4 md:w-6 md:h-6'/>
+          <img src='/images/instagram.png' alt="" className='w-4 h-4 md:w-6 md:h-6'/>
         </div>
       </div>
     </footer>

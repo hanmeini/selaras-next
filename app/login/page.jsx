@@ -104,7 +104,7 @@ const Login = () => {
                     bg-cover bg-center bg-[url('/images/login.png')] lg:bg-none lg:bg-white"
                 >
                 <div className="absolute inset-0 bg-[#003366]/55 lg:hidden"></div>
-                <button onClick={() => router.push('/')} className="lg:hidden z-10 absolute top-5 left-5 w-10 h-10 flex items-center justify-center text-white text-2xl border border-white rounded-full hover:bg-white hover:text-[#003366] transition">
+                <button onClick={() => router.push('/')} className="lg:hidden z-10000 absolute top-0 left-5 w-10 h-10 flex items-center justify-center text-white text-2xl border border-white rounded-full hover:bg-white hover:text-[#003366] transition">
                     ←
                 </button>
 

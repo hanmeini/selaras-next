@@ -12,8 +12,6 @@ const RekomendasiGrid = ({ kategori, pilihanMood, butuhAksesDifabel, searchTerm 
   const [masterData, setMasterData] = useState(null);
   const [displayedData, setDisplayedData] = useState(null);
   const [loading, setLoading] = useState(true);
-  
-    const [isFallback, setIsFallback] = useState(false); 
   const [fallbackData, setFallbackData] = useState([]);
 
   // Ambil data dari Firestore
@@ -21,13 +19,10 @@ const RekomendasiGrid = ({ kategori, pilihanMood, butuhAksesDifabel, searchTerm 
     const fetchDestinasi = async () => {
       setLoading(true);
       setMasterData(null);
-      setIsFallback(false);
-      setFallbackData([]);
-
       try {
         let q;
         if (kategori) {
-          // --- LOGIKA JIKA ADA KATEGORI (HASIL KUIS) ---
+          // Logika jika ada kategori dari URL (hasil kuis)
           let conditions = [where('category', '==', kategori)];
           if (pilihanMood && pilihanMood !== 'semua') conditions.push(where('mood', 'array-contains', pilihanMood));
           if (butuhAksesDifabel) conditions.push(where('aksesDifabel', '==', true));
@@ -35,21 +30,10 @@ const RekomendasiGrid = ({ kategori, pilihanMood, butuhAksesDifabel, searchTerm 
           
           const querySnapshot = await getDocs(q);
           const listDestinasi = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-          
-          if (listDestinasi.length > 0) {
-            setMasterData(listDestinasi);
-          } else {
-            // JIKA HASIL FILTER KOSONG, CARI DATA FALLBACK
-            setIsFallback(true);
-            const fallbackQuery = query(collection(db, "places"),limit(6));
-            const fallbackSnapshot = await getDocs(fallbackQuery);
-            const fallbackList = fallbackSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            setFallbackData(fallbackList);
-            setMasterData([]); // Set masterData sebagai array kosong agar hasResults menjadi false
-          }
+          setMasterData(listDestinasi);
 
         } else {
-          // --- LOGIKA UNTUK HALAMAN JELAJAH UMUM (/rekomendasi) ---
+          // Logika untuk halaman jelajah umum (/rekomendasi)
           const categoriesToShow = ['pantai', 'alam', 'sejarah', 'hiburan'];
           const promises = categoriesToShow.map(cat => getDocs(query(collection(db, 'places'), where('category', '==', cat), limit(10))));
           const results = await Promise.all(promises);
@@ -67,11 +51,26 @@ const RekomendasiGrid = ({ kategori, pilihanMood, butuhAksesDifabel, searchTerm 
       }
       setTimeout(() => {
         setLoading(false)
-      },1000)
+      },1000);
     };
 
     fetchDestinasi();
   }, [kategori, pilihanMood, butuhAksesDifabel]);
+
+  // useEffect kedua: untuk mengambil data cadangan (hanya sekali)
+  useEffect(() => {
+    const fetchFallbackData = async () => {
+      try {
+        const fallbackQuery = query(collection(db, "places"), limit(6));
+        const fallbackSnapshot = await getDocs(fallbackQuery);
+        const fallbackList = fallbackSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setFallbackData(fallbackList);
+      } catch (error) {
+        console.error("Gagal mengambil data fallback:", error);
+      }
+    };
+    fetchFallbackData();
+  }, []);
 
   // Filter berdasarkan pencarian
   useEffect(() => {
@@ -151,23 +150,22 @@ const RekomendasiGrid = ({ kategori, pilihanMood, butuhAksesDifabel, searchTerm 
               </div>
             </div>
           ) : (
-            <div className="text-center py-8 px-2 rounded-2xl w-full mx-auto">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">Oops! Tidak Ditemukan</h3>
-                <p className="text-sm text-gray-500 mb-6 ">
-                  <Link href="/quiz" className="underline mr-1">
-                    Ulangi Kuis
-                  </Link>
-                  atau berikut rekomendasi umum untukmu 👇
-                </p>
-              
-              {isFallback && fallbackData.length > 0 && (
-                <>
+            <div className="text-center py-6 rounded-2xl mx-auto ">
+              <h3 className="text-2xl font-bold text-gray-800 mb-5">Oops! Tidak Ditemukan</h3>
+              <Link href="/quiz" className="bg-[#003366] hover:bg-blue-800 text-white px-6 py-3 rounded-full font-semibold transition">
+                Ulangi Kuis
+              </Link>
+              {fallbackData.length > 0 && (
+                <div className="pt-8 text-left space-y-8">
+                  <p className=" text-gray-500 text-center">
+                    Sementara itu, berikut rekomendasi umum untukmu 👇
+                  </p>
                   <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {fallbackData.map((item) => (
                       <WisataCard key={item.id} item={item} />
                     ))}
                   </div>
-                </>
+                </div>
               )}
             </div>
           )}
