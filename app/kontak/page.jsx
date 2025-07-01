@@ -9,7 +9,7 @@ const Contact = () => {
       <div className='w-full lg:w-1/2 max-w-lg flex flex-col items-start relative mt-14 md:mt-0'>
         <div className='self-start mb-4'>
           <img src='/images/email-transparan.png' alt="emailTransparant" className='w-14 h-14'/>
-          <img src='/images/effect.png' alt="effect" className='w-16 h-16 absolute top-2 right-10'/>
+          <img src='/images/effect.png' alt="effect" className='animate-rotate-swing w-16 h-16 absolute top-2 right-10'/>
         </div>
         <h1 className='text-4xl md:text-5xl font-bold font-manrope text-[#2E2E2E] mb-4 text-left'>Sampaikan Ceritamu</h1>
         <p className='text-left text-gray-500 font-manrope font-semibold max-w-md'>
