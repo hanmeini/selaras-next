@@ -85,7 +85,7 @@ export default function Navbar() {
               <HamburgerIcon />
             </button>
             <Link href="/" className="hidden md:block">
-              <img src='/images/logo.png' alt="logo" className="h-12 w-auto object-contain" />
+              <img src='/images/logoSelaras.png' alt="logo" className="h-12 w-auto object-contain" />
             </Link>
           </div>
           
@@ -190,7 +190,7 @@ export default function Navbar() {
               onClick={(e) => e.stopPropagation()}
             >
             <div className="flex justify-between items-center p-4 border-b">
-                <img src='/images/logo.png' alt="logo" className="h-10 w-auto" />
+                <img src='/images/logoSelaras.png' alt="logo" className="h-10 w-auto" />
                 <button onClick={() => setMobileMenuOpen(false)} className="p-2 transition hover:rotate-90 duration-300">
                   <CloseIcon />
                 </button>

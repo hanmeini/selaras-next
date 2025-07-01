@@ -113,7 +113,7 @@ const LandingPage = () => {
             />
           </div>
           <div className="w-full h-[60%] absolute right-0 left-0 bottom-[10%] bg-gradient-to-t mb-20 from-white to-transparent"></div>
-          <div className="bg-white w-full lg:flex lg:flex-row flex flex-col justify-between items-start z-20 p-6">
+          <div className="bg-white w-full lg:flex lg:flex-row flex flex-col justify-between items-start md:items-center z-20 p-6">
             <h2 className="text-[#8A9497] text-md lg:text-[27px] font-semibold">
               Terintegrasi dengan 5+ Travel Startup{" "}
             </h2>
