@@ -87,7 +87,7 @@ const Register = () => {
             >
                 <div className="absolute inset-0 bg-[#003366]/55 lg:hidden"></div>
                 {/* Tombol kembali hanya untuk mobile */}
-                <button onClick={() => router.back(-1)} className="lg:hidden z-10000 absolute top-0 left-5 w-12 h-12 flex items-center justify-center text-white text-2xl border border-white rounded-full hover:bg-white hover:text-[#003366] transition">
+                <button onClick={() => router.back(-1)} className="lg:hidden z-10000 absolute top-2 left-2 w-12 h-12 flex items-center justify-center text-white text-2xl border border-white rounded-full hover:bg-white hover:text-[#003366] transition">
                     ←
                 </button>
 

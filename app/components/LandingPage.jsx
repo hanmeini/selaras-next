@@ -119,22 +119,22 @@ const LandingPage = () => {
             </h2>
             <div className="flex flex-row gap-3 mr-3 lg:justify-end">
               <img
-                className="object-contain max-w-1/5 md:max-w-1/6"
+                className="object-contain max-w-1/4 md:max-w-1/6"
                 src="/images/airbnb.png"
                 alt="airbnb"
               />
               <img
-                className="object-contain max-w-1/5 md:max-w-1/6"
+                className="object-contain max-w-1/4 md:max-w-1/6"
                 src="/images/traveloka.png"
                 alt="traveloka"
               />
               <img
-                className="object-contain max-w-1/5 md:max-w-1/6"
+                className="object-contain max-w-1/4 md:max-w-1/6"
                 src="/images/trivago.png"
                 alt="trivago"
               />
               <img
-                className="object-contain max-w-1/5 md:max-w-1/6"
+                className="object-contain max-w-1/4 md:max-w-1/6"
                 src="/images/oyo.png"
                 alt="oyo"
               />
